@@ -1,18 +1,26 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { Cross } from 'lucide-react';
+import { Cross, Eye, EyeOff } from 'lucide-react';
 
 export default function Login() {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
   const { login, register } = useContext(AuthContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    
+    if (!isLogin && password !== confirmPassword) {
+      setError('Passwords do not match!');
+      return;
+    }
     
     const action = isLogin ? login : register;
     const result = await action(username, password);
@@ -82,15 +90,82 @@ export default function Login() {
           </div>
           <div className="form-group" style={{ marginBottom: 0 }}>
             <label style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-main)' }}>Password</label>
-            <input 
-              type="password" 
-              className="form-input" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              required 
-              placeholder="Enter Password"
-            />
+            <div style={{ position: 'relative' }}>
+              <input 
+                type={showPassword ? "text" : "password"} 
+                className="form-input" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                required 
+                placeholder="Enter Password"
+                style={{ paddingRight: '3rem' }}
+              />
+              {password.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{
+                    position: 'absolute',
+                    right: '0.75rem',
+                    top: '50%',
+                    transform: 'translateY(-50%)',
+                    background: 'none',
+                    border: 'none',
+                    color: 'var(--text-muted)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '0.25rem'
+                  }}
+                  title={showPassword ? "Hide Password" : "Show Password"}
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              )}
+            </div>
           </div>
+          
+          {!isLogin && (
+            <div className="form-group" style={{ marginBottom: 0 }}>
+              <label style={{ fontWeight: 600, fontSize: '0.85rem', color: 'var(--text-main)' }}>Confirm Password</label>
+              <div style={{ position: 'relative' }}>
+                <input 
+                  type={showConfirmPassword ? "text" : "password"} 
+                  className="form-input" 
+                  value={confirmPassword} 
+                  onChange={(e) => setConfirmPassword(e.target.value)} 
+                  required 
+                  placeholder="Confirm Password"
+                  style={{ paddingRight: '3rem' }}
+                />
+                {confirmPassword.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    style={{
+                      position: 'absolute',
+                      right: '0.75rem',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      background: 'none',
+                      border: 'none',
+                      color: 'var(--text-muted)',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '0.25rem'
+                    }}
+                    title={showConfirmPassword ? "Hide Password" : "Show Password"}
+                  >
+                    {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
           <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', padding: '1rem', fontSize: '1rem' }}>
             {isLogin ? 'Sign In' : 'Register Account'}
           </button>
