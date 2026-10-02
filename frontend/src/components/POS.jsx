@@ -124,10 +124,10 @@ export default function POS() {
           </div>
 
           <div className="search-results">
-            {searchTerm && filteredMedicines.length === 0 && (
+            {filteredMedicines.length === 0 && (
               <p style={{ textAlign: 'center', color: 'var(--text-muted)', marginTop: '2rem' }}>No medicines found in stock.</p>
             )}
-            {searchTerm && filteredMedicines.map(medicine => {
+            {filteredMedicines.map(medicine => {
               const hasDiscount = medicine.discountPercentage > 0;
               const discountedPrice = hasDiscount 
                 ? medicine.price - (medicine.price * (medicine.discountPercentage / 100))

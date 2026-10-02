@@ -88,7 +88,7 @@ export default function Login() {
               value={password} 
               onChange={(e) => setPassword(e.target.value)} 
               required 
-              placeholder="••••••••"
+              placeholder="Enter Password"
             />
           </div>
           <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', padding: '1rem', fontSize: '1rem' }}>

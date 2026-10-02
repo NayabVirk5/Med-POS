@@ -9,6 +9,8 @@ import DiscountedMedicines from './components/DiscountedMedicines';
 import Footer from './components/Footer';
 import Login from './components/Login';
 
+import Chatbot from './components/Chatbot';
+
 const ProtectedRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   if (loading) return <div>Loading...</div>;
@@ -25,6 +27,7 @@ const Layout = ({ children }) => (
       </div>
       <Footer />
     </main>
+    <Chatbot />
   </div>
 );
 
