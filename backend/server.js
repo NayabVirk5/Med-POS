@@ -22,6 +22,7 @@ const medicinesRouter = require('./routes/medicines');
 const salesRouter = require('./routes/sales');
 const { protect } = require('./middleware/auth');
 
+app.get('/', (req, res) => res.send('API is running...'));
 app.use('/api/auth', authRouter);
 app.use('/api/medicines', protect, medicinesRouter);
 app.use('/api/sales', protect, salesRouter);
