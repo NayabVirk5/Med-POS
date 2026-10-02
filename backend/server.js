@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://medposadmin:password123@cluster0.2ejaczs.mongodb.net/medical_store_pos?appName=Cluster0');
+mongoose.connect('mongodb+srv://medposadmin:furyisop56@cluster0.2ejaczs.mongodb.net/medical_store_pos?appName=Cluster0');
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
