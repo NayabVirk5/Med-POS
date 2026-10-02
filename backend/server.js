@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/medical_store_pos');
+mongoose.connect('mongodb+srv://23021519072_db_user:y086aBg1W0h8p6u5@cluster0.2ejaczs.mongodb.net/medical_store_pos?appName=Cluster0');
 
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
