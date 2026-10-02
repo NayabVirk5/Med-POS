@@ -456,6 +456,13 @@ tr:hover td {
     flex-direction: row;
     overflow-x: auto;
     padding-bottom: 0.5rem;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    scroll-behavior: smooth;
+  }
+  
+  .sidebar-nav::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
 
   .nav-link {
@@ -505,6 +512,15 @@ tr:hover td {
     flex-direction: column;
     gap: 1rem;
     align-items: flex-start;
+  }
+
+  .form-input {
+    padding: 1rem 1.25rem;
+    font-size: 1.05rem;
+  }
+  
+  .btn {
+    padding: 1rem 1.5rem;
   }
 }
 

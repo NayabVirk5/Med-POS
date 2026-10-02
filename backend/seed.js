@@ -77,7 +77,7 @@ const sampleMedicines = [
   }
 ];
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/medical_store_pos')
+mongoose.connect('mongodb+srv://medposadmin:furyisop56@cluster0.2ejaczs.mongodb.net/medical_store_pos?appName=Cluster0')
   .then(async () => {
     console.log('Connected to DB for seeding...');
     
