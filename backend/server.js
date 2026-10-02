@@ -26,4 +26,4 @@ app.use('/api/auth', authRouter);
 app.use('/api/medicines', protect, medicinesRouter);
 app.use('/api/sales', protect, salesRouter);
 
-app.listen(PORT, '0.0.0.0', () => console.log(`Server started on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
