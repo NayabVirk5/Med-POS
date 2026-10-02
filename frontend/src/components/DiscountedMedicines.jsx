@@ -8,7 +8,7 @@ export default function DiscountedMedicines() {
 
   useEffect(() => {
     if (!user) return;
-    fetch('http://localhost:5000/api/medicines', {
+    fetch('https://med-pos-production.up.railway.app/api/medicines', {
       headers: { 'Authorization': `Bearer ${user.token}` }
     })
       .then(res => res.json())

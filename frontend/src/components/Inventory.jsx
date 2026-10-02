@@ -13,7 +13,7 @@ export default function Inventory() {
 
   const fetchMedicines = useCallback(() => {
     if (!user) return;
-    fetch('http://localhost:5000/api/medicines', {
+    fetch('https://med-pos-production.up.railway.app/api/medicines', {
       headers: { 'Authorization': `Bearer ${user.token}` }
     })
       .then(res => res.json())
@@ -32,8 +32,8 @@ export default function Inventory() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const url = editingId 
-      ? `http://localhost:5000/api/medicines/${editingId}`
-      : 'http://localhost:5000/api/medicines';
+      ? `https://med-pos-production.up.railway.app/api/medicines/${editingId}`
+      : 'https://med-pos-production.up.railway.app/api/medicines';
     
     const method = editingId ? 'PUT' : 'POST';
 
@@ -71,7 +71,7 @@ export default function Inventory() {
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this medicine?')) {
-      fetch(`http://localhost:5000/api/medicines/${id}`, { 
+      fetch(`https://med-pos-production.up.railway.app/api/medicines/${id}`, { 
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${user.token}` }
       })

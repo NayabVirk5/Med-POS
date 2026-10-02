@@ -10,7 +10,7 @@ export default function POS() {
 
   useEffect(() => {
     if (!user) return;
-    fetch('http://localhost:5000/api/medicines', {
+    fetch('https://med-pos-production.up.railway.app/api/medicines', {
       headers: { 'Authorization': `Bearer ${user.token}` }
     })
       .then(res => res.json())
@@ -75,7 +75,7 @@ export default function POS() {
   const handleCheckout = () => {
     if (cart.length === 0) return;
 
-    fetch('http://localhost:5000/api/sales', {
+    fetch('https://med-pos-production.up.railway.app/api/sales', {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ export default function POS() {
       alert('Sale completed successfully!');
       setCart([]);
       // Refresh medicines to get updated stock
-      fetch('http://localhost:5000/api/medicines', {
+      fetch('https://med-pos-production.up.railway.app/api/medicines', {
         headers: { 'Authorization': `Bearer ${user.token}` }
       })
         .then(res => res.json())

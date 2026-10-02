@@ -10,12 +10,12 @@ export default function Dashboard() {
   useEffect(() => {
     const headers = { 'Authorization': `Bearer ${user?.token}` };
 
-    fetch('http://localhost:5000/api/sales', { headers })
+    fetch('https://med-pos-production.up.railway.app/api/sales', { headers })
       .then(res => res.json())
       .then(data => setSales(data))
       .catch(err => console.error(err));
 
-    fetch('http://localhost:5000/api/medicines', { headers })
+    fetch('https://med-pos-production.up.railway.app/api/medicines', { headers })
       .then(res => res.json())
       .then(data => setMedicines(data))
       .catch(err => console.error(err));
