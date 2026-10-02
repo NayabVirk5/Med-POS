@@ -18,18 +18,42 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-const Layout = ({ children }) => (
-  <div className="app-container">
-    <Sidebar />
-    <main className="main-content">
-      <div style={{ flex: 1 }}>
-        {children}
+import { useState } from 'react';
+import { Menu } from 'lucide-react';
+
+const Layout = ({ children }) => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="app-container">
+      <div className="mobile-header">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 'bold', fontSize: '1.25rem', color: 'var(--primary-color)' }}>
+          Lifecare POS
+        </div>
+        <button 
+          onClick={() => setIsMobileMenuOpen(true)}
+          style={{ background: 'none', border: 'none', color: 'var(--text-main)', cursor: 'pointer' }}
+        >
+          <Menu size={28} />
+        </button>
       </div>
-      <Footer />
-    </main>
-    <Chatbot />
-  </div>
-);
+      
+      {isMobileMenuOpen && (
+        <div className="mobile-overlay" onClick={() => setIsMobileMenuOpen(false)}></div>
+      )}
+
+      <Sidebar isOpen={isMobileMenuOpen} closeMenu={() => setIsMobileMenuOpen(false)} />
+      
+      <main className="main-content">
+        <div style={{ flex: 1 }}>
+          {children}
+        </div>
+        <Footer />
+      </main>
+      <Chatbot />
+    </div>
+  );
+};
 
 function App() {
   return (
